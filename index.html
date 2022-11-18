@@ -219,7 +219,31 @@
             </div>
           </div>
 
-          
+          <form v-on:submit.prevent="checkout" class="w-full sm:w-2/3 lg:w-1/4 space-y-4 p-4 border rounded shadow">
+            <h3 class="text-xl font-semibold text-blue-700">Checkout</h3>
+
+            <input
+              type="text"
+              class="p-2 border w-full"
+              placeholder="Name"
+              v-model="name"
+            />
+            <span v-if="nameError" class="text-red-500">{{ nameError }}</span>
+
+            <br>
+
+            <input
+              type="tel"
+              class="p-2 border w-full"
+              placeholder="Phone"
+              v-model="phone"
+            />
+            <span v-if="phoneError" class="text-red-500">{{ phoneError }}</span>
+
+            <br>
+
+            <button class="bg-blue-700 p-2 rounded text-white" :class="{'opacity-20': !isCheckoutFormValid}" v-bind:disabled="!isCheckoutFormValid">Checkout</button>
+          </form>
         </div>
       </section>
 
