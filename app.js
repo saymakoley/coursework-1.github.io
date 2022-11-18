@@ -253,7 +253,7 @@ const app = new Vue({
   watch: {
     name: {
       handler(newValue) {
-        const regex = /^[A-Za-z]+$/
+        const regex = /^[A-Za-z\s]*$/
         if (!newValue) {
           this.nameError = "Please enter your name";
         }
