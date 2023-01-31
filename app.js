@@ -29,7 +29,7 @@ const app = new Vue({
       if (lesson.spaces > 0) {
         if (!isLessonInCart) {
           this.cart.push({
-            id: lesson._id,
+            _id: lesson._id,
             subject: lesson.subject,
             location: lesson.location,
             price: lesson.price,
@@ -40,7 +40,7 @@ const app = new Vue({
           this.cart = this.cart.map(function (cartItem) {
             if (cartItem._id === lesson._id) {
               return {
-                id: cartItem._id,
+                _id: cartItem._id,
                 subject: cartItem.subject,
                 location: cartItem.location,
                 price: cartItem.price,
@@ -57,7 +57,7 @@ const app = new Vue({
         this.lessons = this.lessons.map(function (lessonItem) {
           if (lessonItem.spaces > 0 && lessonItem._id === lesson._id) {
             return {
-              id: lessonItem._id,
+              _id: lessonItem._id,
               subject: lessonItem.subject,
               location: lessonItem.location,
               price: lessonItem.price,
@@ -81,7 +81,7 @@ const app = new Vue({
       this.lessons = this.lessons.map(function (lessonItem) {
         if (lessonItem._id === _id) {
           return {
-            id: lessonItem._id,
+            _id: lessonItem._id,
             subject: lessonItem.subject,
             location: lessonItem.location,
             price: lessonItem.price,
@@ -99,24 +99,34 @@ const app = new Vue({
     },
 
     checkout() {
-      alert("Checked out successfully");
-
-      this.cart.forEach((cartItem) => {
-        this.lessons = this.lessons.map(function (lessonItem) {
-          if (lessonItem._id === cartItem._id) {
-            return {
-              id: lessonItem._id,
-              subject: lessonItem.subject,
-              location: lessonItem.location,
-              price: lessonItem.price,
-              image: lessonItem.image,
-              spaces: 5,
-            };
-          } else {
-            return lessonItem;
-          }
+      this.cart.forEach(async (item) => {
+        console.log(item)
+        // create order
+        await fetch("https://sayma-coursework-2.herokuapp.com/order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: this.name,
+            phone: this.phone,
+            lesson_id: item._id,
+            spaces: item.spaces,
+          }),
         });
+
+        // update spaces
+        await fetch(
+          "https://sayma-coursework-2.herokuapp.com/lesson/" + item._id,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              spaces: item.spaces,
+            }),
+          }
+        );
       });
+
+      alert("Checked out successfully");
 
       this.cart = [];
 
