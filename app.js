@@ -6,10 +6,10 @@ const app = new Vue({
     orderOption: "ascending",
     cart: [],
     showCart: false,
-    name: '',
-    phone: '',
-    nameError: '',
-    phoneError: '',
+    name: "",
+    phone: "",
+    nameError: "",
+    phoneError: "",
     lessons: [],
   },
   methods: {
@@ -99,7 +99,7 @@ const app = new Vue({
     },
 
     checkout() {
-      alert('Checked out successfully')
+      alert("Checked out successfully");
 
       this.cart.forEach((cartItem) => {
         this.lessons = this.lessons.map(function (lessonItem) {
@@ -116,22 +116,24 @@ const app = new Vue({
             return lessonItem;
           }
         });
-      })
+      });
 
-      this.cart = []
+      this.cart = [];
 
-      this.name = '' 
-      this.phone = ''
-      this.nameError = ''
-      this.phoneError = ''
+      this.name = "";
+      this.phone = "";
+      this.nameError = "";
+      this.phoneError = "";
 
-      this.showCart = false
-    }
+      this.showCart = false;
+    },
   },
   async created() {
-    const response = await fetch('https://sayma-coursework-2.herokuapp.com/lesson')
-    
-    this.lessons = await response.json()
+    const response = await fetch(
+      "https://sayma-coursework-2.herokuapp.com/lesson"
+    );
+
+    this.lessons = await response.json();
   },
   computed: {
     noOfItemsInCart() {
@@ -143,7 +145,7 @@ const app = new Vue({
     },
 
     modifiedLessons() {
-      const lessons = this.lessons
+      const lessons = this.lessons;
 
       if (this.orderOption === "ascending") {
         if (this.sortOption === "subject") {
@@ -235,25 +237,32 @@ const app = new Vue({
     isCheckoutFormValid() {
       if (this.name && this.phone) {
         if (!this.nameError && !this.phoneError) {
-          return true
+          return true;
         }
       }
 
-      return false
-    }
+      return false;
+    },
   },
 
   watch: {
+    search: {
+      async handler(val) {
+        const response = await fetch(
+          `https://sayma-coursework-2.herokuapp.com/lesson?search=${val}`
+        );
+
+        this.lessons = await response.json();
+      },
+    },
     name: {
       handler(newValue) {
-        const regex = /^[A-Za-z\s]*$/
+        const regex = /^[A-Za-z\s]*$/;
         if (!newValue) {
           this.nameError = "Please enter your name";
-        }
-        else if (!regex.test(newValue)) {
+        } else if (!regex.test(newValue)) {
           this.nameError = "Please enter a valid name";
-        }
-        else {
+        } else {
           this.nameError = "";
         }
       },
@@ -265,11 +274,9 @@ const app = new Vue({
 
         if (!newValue) {
           this.phoneError = "Please enter your phone number";
-        }
-        else if (!regex.test(newValue)) {
+        } else if (!regex.test(newValue)) {
           this.phoneError = "Please enter a valid number";
-        }
-        else {
+        } else {
           this.phoneError = "";
         }
       },
