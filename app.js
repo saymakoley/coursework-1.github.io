@@ -1,5 +1,3 @@
-import lessons from "./lessons.js";
-
 const app = new Vue({
   el: "#app",
   data: {
@@ -12,7 +10,7 @@ const app = new Vue({
     phone: '',
     nameError: '',
     phoneError: '',
-    lessons,
+    lessons: [],
   },
   methods: {
     addItemToCart(id) {
