@@ -13,9 +13,9 @@ const app = new Vue({
     lessons: [],
   },
   methods: {
-    addItemToCart(id) {
+    addItemToCart(_id) {
       const lesson = this.lessons.find(function (lesson) {
-        if (lesson.id === id) {
+        if (lesson._id === _id) {
           return true;
         } else {
           return false;
@@ -23,13 +23,13 @@ const app = new Vue({
       });
 
       const isLessonInCart = !!this.cart.find(function (cartItem) {
-        return cartItem.id === id;
+        return cartItem._id === _id;
       });
 
       if (lesson.spaces > 0) {
         if (!isLessonInCart) {
           this.cart.push({
-            id: lesson.id,
+            id: lesson._id,
             subject: lesson.subject,
             location: lesson.location,
             price: lesson.price,
@@ -38,9 +38,9 @@ const app = new Vue({
           });
         } else {
           this.cart = this.cart.map(function (cartItem) {
-            if (cartItem.id === lesson.id) {
+            if (cartItem._id === lesson._id) {
               return {
-                id: cartItem.id,
+                id: cartItem._id,
                 subject: cartItem.subject,
                 location: cartItem.location,
                 price: cartItem.price,
@@ -55,9 +55,9 @@ const app = new Vue({
 
         // decrease lesson spaces
         this.lessons = this.lessons.map(function (lessonItem) {
-          if (lessonItem.spaces > 0 && lessonItem.id === lesson.id) {
+          if (lessonItem.spaces > 0 && lessonItem._id === lesson._id) {
             return {
-              id: lessonItem.id,
+              id: lessonItem._id,
               subject: lessonItem.subject,
               location: lessonItem.location,
               price: lessonItem.price,
@@ -71,17 +71,17 @@ const app = new Vue({
       }
     },
 
-    removeItemFromCart(id) {
+    removeItemFromCart(_id) {
       const index = this.cart.findIndex(function (cartItem) {
-        return cartItem.id === id;
+        return cartItem._id === _id;
       });
 
       this.cart.splice(index, 1);
 
       this.lessons = this.lessons.map(function (lessonItem) {
-        if (lessonItem.id === id) {
+        if (lessonItem._id === _id) {
           return {
-            id: lessonItem.id,
+            id: lessonItem._id,
             subject: lessonItem.subject,
             location: lessonItem.location,
             price: lessonItem.price,
@@ -103,9 +103,9 @@ const app = new Vue({
 
       this.cart.forEach((cartItem) => {
         this.lessons = this.lessons.map(function (lessonItem) {
-          if (lessonItem.id === cartItem.id) {
+          if (lessonItem._id === cartItem._id) {
             return {
-              id: lessonItem.id,
+              id: lessonItem._id,
               subject: lessonItem.subject,
               location: lessonItem.location,
               price: lessonItem.price,
@@ -128,6 +128,11 @@ const app = new Vue({
       this.showCart = false
     }
   },
+  async created() {
+    const response = await fetch('https://sayma-coursework-2.herokuapp.com/lesson')
+    
+    this.lessons = await response.json()
+  },
   computed: {
     noOfItemsInCart() {
       if (this.cart.length > 0) {
@@ -138,17 +143,7 @@ const app = new Vue({
     },
 
     modifiedLessons() {
-      const lessons = this.lessons.filter((lesson) => {
-        if (lesson.subject.toLowerCase().includes(this.search.toLowerCase())) {
-            return true
-          }
-
-        if (lesson.location.toLowerCase().includes(this.search.toLowerCase())) {
-            return true
-        }
-
-        return false
-      })
+      const lessons = this.lessons
 
       if (this.orderOption === "ascending") {
         if (this.sortOption === "subject") {
