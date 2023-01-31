@@ -100,7 +100,6 @@ const app = new Vue({
 
     checkout() {
       this.cart.forEach(async (item) => {
-        console.log(item)
         // create order
         await fetch("https://sayma-coursework-2.herokuapp.com/order", {
           method: "POST",
