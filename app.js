@@ -101,7 +101,7 @@ const app = new Vue({
     checkout() {
       this.cart.forEach(async (item) => {
         // create order
-        await fetch("https://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/order", {
+        await fetch("http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -114,7 +114,7 @@ const app = new Vue({
 
         // update spaces
         await fetch(
-          "https://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson/" + item._id,
+          "http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson/" + item._id,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ const app = new Vue({
   },
   async created() {
     const response = await fetch(
-      "https://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson"
+      "http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson"
     );
 
     this.lessons = await response.json();
@@ -258,7 +258,7 @@ const app = new Vue({
     search: {
       async handler(val) {
         const response = await fetch(
-          `https://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson?search=${val}`
+          `http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson?search=${val}`
         );
 
         this.lessons = await response.json();
