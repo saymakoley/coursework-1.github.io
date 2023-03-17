@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1 class="text-blue-700 text-4xl">This is trghe header</h1>
 
     <!-- Navigation -->
     <nav class="bg-blue-700">
