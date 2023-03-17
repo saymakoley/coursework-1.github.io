@@ -40,12 +40,18 @@
             </div>
           </nav>
 
+          <Lessons v-if="!showCart" />
+
   </div>
 </template>
 
 <script>
+import Lessons from './components/Lessons.vue'
 export default {
   name: 'App',
+  components: {
+    Lessons,
+  },
   data() {
     return {
       cart: [],
