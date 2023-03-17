@@ -4,8 +4,8 @@ const app = new Vue({
     search: "",
     sortOption: "subject",
     orderOption: "ascending",
-    cart: [],
-    showCart: false,
+    
+    
     name: "",
     phone: "",
     nameError: "",
@@ -145,13 +145,7 @@ const app = new Vue({
     this.lessons = await response.json();
   },
   computed: {
-    noOfItemsInCart() {
-      if (this.cart.length > 0) {
-        return this.cart.reduce((total, item) => total + item.spaces, 0);
-      } else {
-        return 0;
-      }
-    },
+    
 
     modifiedLessons() {
       const lessons = this.lessons;
