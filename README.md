@@ -1,11 +1,19 @@
-# coursework-1.github.io
+# coursework-1
 
-This is the Individual Part of Course Work 1.
-From this Web-App , user can  search  different  subjects using subject name , location , price , and Availability .  User also can check subjet by order . User can add the subjects to the Shopping cart . The customers can checkout the by using their name and phone number 
+## Project setup
+```
+yarn install
+```
 
-This is the github Repository link 
-https://github.com/saymakoley/coursework-1.github.io.git
- This is the git hub pages link 
- 
- https://saymakoley.github.io/coursework-1.github.io/
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
