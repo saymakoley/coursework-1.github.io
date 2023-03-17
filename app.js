@@ -101,7 +101,7 @@ const app = new Vue({
     checkout() {
       this.cart.forEach(async (item) => {
         // create order
-        await fetch("http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/order", {
+        await fetch("https://sayma-cw2.onrender.com/order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -114,7 +114,7 @@ const app = new Vue({
 
         // update spaces
         await fetch(
-          "http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson/" + item._id,
+          "https://sayma-cw2.onrender.com/lesson/" + item._id,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ const app = new Vue({
   },
   async created() {
     const response = await fetch(
-      "http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson"
+      "https://sayma-cw2.onrender.com/lesson"
     );
 
     this.lessons = await response.json();
@@ -258,7 +258,7 @@ const app = new Vue({
     search: {
       async handler(val) {
         const response = await fetch(
-          `http://sayma-coursework-2-env.eba-mykuuqsz.eu-west-2.elasticbeanstalk.com/lesson?search=${val}`
+          `https://sayma-cw2.onrender.com/lesson?search=${val}`
         );
 
         this.lessons = await response.json();
