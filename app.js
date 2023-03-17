@@ -1,16 +1,14 @@
 const app = new Vue({
   el: "#app",
   data: {
-    search: "",
-    sortOption: "subject",
-    orderOption: "ascending",
+    
     
     
     name: "",
     phone: "",
     nameError: "",
     phoneError: "",
-    lessons: [],
+    
   },
   methods: {
     addItemToCart(_id) {
@@ -137,105 +135,11 @@ const app = new Vue({
       this.showCart = false;
     },
   },
-  async created() {
-    const response = await fetch(
-      "https://sayma-cw2.onrender.com/lesson"
-    );
-
-    this.lessons = await response.json();
-  },
+  
   computed: {
     
 
-    modifiedLessons() {
-      const lessons = this.lessons;
-
-      if (this.orderOption === "ascending") {
-        if (this.sortOption === "subject") {
-          return lessons.sort(function (a, b) {
-            if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
-              return 1;
-            } else if (a.subject.toLowerCase() < b.subject.toLowerCase()) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "location") {
-          return lessons.sort(function (a, b) {
-            if (a.location.toLowerCase() > b.location.toLowerCase()) {
-              return 1;
-            } else if (a.location.toLowerCase() < b.location.toLowerCase()) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "price") {
-          return lessons.sort(function (a, b) {
-            if (a.price > b.price) {
-              return 1;
-            } else if (a.price < b.price) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "availability") {
-          return lessons.sort(function (a, b) {
-            if (a.spaces > b.spaces) {
-              return 1;
-            } else if (a.spaces < b.spaces) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
-        }
-      } else if (this.orderOption === "descending") {
-        if (this.sortOption === "subject") {
-          return lessons.sort(function (a, b) {
-            if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
-              return -1;
-            } else if (a.subject.toLowerCase() < b.subject.toLowerCase()) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "location") {
-          return lessons.sort(function (a, b) {
-            if (a.location.toLowerCase() > b.location.toLowerCase()) {
-              return -1;
-            } else if (a.location.toLowerCase() < b.location.toLowerCase()) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "price") {
-          return lessons.sort(function (a, b) {
-            if (a.price > b.price) {
-              return -1;
-            } else if (a.price < b.price) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-        } else if (this.sortOption === "availability") {
-          return lessons.sort(function (a, b) {
-            if (a.spaces > b.spaces) {
-              return -1;
-            } else if (a.spaces < b.spaces) {
-              return 1;
-            } else {
-              return 0;
-            }
-          });
-        }
-      }
-    },
+    
 
     isCheckoutFormValid() {
       if (this.name && this.phone) {
