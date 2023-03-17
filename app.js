@@ -11,63 +11,7 @@ const app = new Vue({
     
   },
   methods: {
-    addItemToCart(_id) {
-      const lesson = this.lessons.find(function (lesson) {
-        if (lesson._id === _id) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      const isLessonInCart = !!this.cart.find(function (cartItem) {
-        return cartItem._id === _id;
-      });
-
-      if (lesson.spaces > 0) {
-        if (!isLessonInCart) {
-          this.cart.push({
-            _id: lesson._id,
-            subject: lesson.subject,
-            location: lesson.location,
-            price: lesson.price,
-            image: lesson.image,
-            spaces: 1,
-          });
-        } else {
-          this.cart = this.cart.map(function (cartItem) {
-            if (cartItem._id === lesson._id) {
-              return {
-                _id: cartItem._id,
-                subject: cartItem.subject,
-                location: cartItem.location,
-                price: cartItem.price,
-                image: cartItem.image,
-                spaces: ++cartItem.spaces,
-              };
-            } else {
-              return cartItem;
-            }
-          });
-        }
-
-        // decrease lesson spaces
-        this.lessons = this.lessons.map(function (lessonItem) {
-          if (lessonItem.spaces > 0 && lessonItem._id === lesson._id) {
-            return {
-              _id: lessonItem._id,
-              subject: lessonItem.subject,
-              location: lessonItem.location,
-              price: lessonItem.price,
-              image: lessonItem.image,
-              spaces: --lessonItem.spaces,
-            };
-          } else {
-            return lessonItem;
-          }
-        });
-      }
-    },
+    
 
     removeItemFromCart(_id) {
       const index = this.cart.findIndex(function (cartItem) {

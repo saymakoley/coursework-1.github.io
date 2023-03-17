@@ -135,7 +135,9 @@
                         <button
                             class="bg-blue-700 p-2 text-white rounded !mt-8 disabled:opacity-20"
                             v-bind:disabled="lesson.spaces == 0"
-                            v-on:click="addItemToCart(lesson._id)"
+                            v-on:click.prevent="
+                            $emit('addItemToCart', lesson._id)
+                        "
                         >
                             <span v-if="lesson.spaces > 0">Add to cart</span>
                             <span v-else>Out of stock</span>
