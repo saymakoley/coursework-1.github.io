@@ -1,12 +1,13 @@
 {
   "name": "coursework-1",
+  "homepage": "https://saymakoley.github.io/coursework-1.github.io",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "node scripts/gh-pages-deploy.js"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "register-service-worker": "^1.7.1",

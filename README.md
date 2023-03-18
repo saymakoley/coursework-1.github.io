@@ -1,19 +1,5 @@
-# coursework-1
+# coursework-3
 
-## Project setup
-```
-yarn install
-```
+Github repository : https://github.com/saymakoley/coursework-3.github.io
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Github Pages Link : https://saymakoley.github.io/coursework-3.github.io/
