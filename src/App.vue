@@ -320,14 +320,15 @@ export default {
 
         this.lessons = await response.json();
     },
-    search: {
-        async handler(val) {
-            console.log(val);
-            const response = await fetch(
-                `https://sayma-cw2.onrender.com/lesson?search=${val}`
-            );
+    watch: {
+        search: {
+            async handler(val) {
+                const response = await fetch(
+                    `https://sayma-cw2.onrender.com/lesson?search=${val}`
+                );
 
-            this.lessons = await response.json();
+                this.lessons = await response.json();
+            },
         },
     },
 };
