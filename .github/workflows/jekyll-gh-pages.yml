@@ -47,5 +47,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          token: ${{ secrets.GITHUB_TOKEN }}
+          preview: ./dist
