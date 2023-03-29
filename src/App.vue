@@ -170,7 +170,7 @@ export default {
         checkout() {
             this.cart.forEach(async (item) => {
                 // create order
-                await fetch("https://sayma-cw2.onrender.com/order", {
+                await fetch("https://sayma-coursework-2.herokuapp.com/order", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -183,7 +183,7 @@ export default {
 
                 // update spaces
                 await fetch(
-                    "https://sayma-cw2.onrender.com/lesson/" + item._id,
+                    "https://sayma-coursework-2.herokuapp.com/lesson/" + item._id,
                     {
                         method: "PUT",
                         headers: { "Content-Type": "application/json" },
@@ -316,7 +316,7 @@ export default {
         },
     },
     async created() {
-        const response = await fetch("https://sayma-cw2.onrender.com/lesson");
+        const response = await fetch("https://sayma-coursework-2.herokuapp.com/lesson");
 
         this.lessons = await response.json();
     },
@@ -324,7 +324,7 @@ export default {
         search: {
             async handler(val) {
                 const response = await fetch(
-                    `https://sayma-cw2.onrender.com/lesson?search=${val}`
+                    `https://sayma-coursework-2.herokuapp.com/lesson?search=${val}`
                 );
 
                 this.lessons = await response.json();
