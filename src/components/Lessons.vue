@@ -110,7 +110,7 @@
                     :key="lesson.id"
                 >
                     <img
-                        v-bind:src="`https://sayma-cw2.onrender.com/images/${lesson.image}`"
+                        v-bind:src="`https://sayma-coursework-2.herokuapp.com/images/${lesson.image}`"
                         class="w-full h-40"
                         v-bind:alt="lesson.subject"
                     />
