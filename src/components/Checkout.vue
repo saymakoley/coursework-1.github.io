@@ -1,4 +1,5 @@
 <template>
+    <!-- Checkout component -->
     <section class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-6">
         <div class="space-y-4">
             <h2
@@ -36,6 +37,10 @@
                             {{ cartItem.spaces }}
                         </p>
 
+                        <!-- 
+                            * button to remove item from cart 
+                            * on click of the button - it emits the event: removeItemFromCart with the lessons id
+                        -->
                         <button
                             class="bg-blue-700 p-2 text-white rounded !mt-4 disabled:opacity-20"
                             v-on:click="

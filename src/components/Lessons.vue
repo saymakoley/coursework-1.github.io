@@ -132,6 +132,10 @@
                             {{ lesson.spaces }}
                         </p>
                         <br />
+                        <!-- 
+                            * button to add item to cart 
+                            * on click of the button - it emits the event: addItemToCart with the lessons id
+                        -->
                         <button
                             class="bg-blue-700 p-2 text-white rounded !mt-8 disabled:opacity-20"
                             v-bind:disabled="lesson.spaces == 0"

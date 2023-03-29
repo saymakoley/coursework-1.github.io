@@ -1,4 +1,5 @@
 <template>
+    <!-- Root Component -->
     <div id="app">
         <!-- Navigation -->
         <nav class="bg-blue-700">
@@ -13,6 +14,7 @@
                     Coursework 1
                 </a>
 
+                <!-- Cart button that switches between Lessons and Checkout -->
                 <button
                     v-on:click="showCart = !showCart"
                     class="flex items-center space-x-2"
@@ -41,6 +43,10 @@
             </div>
         </nav>
 
+        <!-- 
+            * make use of lessons component 
+            * pass lessons gotten from API as prop to component - :lessons="modifiedLessons"
+        -->
         <Lessons
             v-if="!showCart"
             :lessons="modifiedLessons"
@@ -50,6 +56,10 @@
             @addItemToCart="addItemToCart"
         />
 
+        <!-- 
+            * make use of checkout component 
+            * pass shopping cart to component - :cart="cart"
+        -->
         <Checkout
             v-else
             :cart="cart"
@@ -59,26 +69,27 @@
     </div>
 </template>
 
-<script>
-import Lessons from "./components/Lessons.vue";
-import Checkout from "./components/Checkout.vue";
+<script> 
+import Lessons from "./components/Lessons.vue"; // import lessons component from the components directory
+import Checkout from "./components/Checkout.vue"; // import checkout component from the components directory
 export default {
     name: "App",
     components: {
-        Lessons,
-        Checkout,
+        Lessons, // register lessons component
+        Checkout, // register checkout component
     },
     data() {
         return {
             search: "",
             sortOption: "subject",
             orderOption: "ascending",
-            lessons: [],
-            cart: [],
+            lessons: [], // lessons data property
+            cart: [], // shopping cart
             showCart: false,
         };
     },
     methods: {
+        // function to addItemToCart when event is triggered from the lessons component with the lessons id to add to cart
         addItemToCart(_id) {
             const lesson = this.lessons.find(function (lesson) {
                 if (lesson._id === _id) {
@@ -316,8 +327,10 @@ export default {
         },
     },
     async created() {
+        // get all lessons from REST API
         const response = await fetch("https://sayma-coursework-2.herokuapp.com/lesson");
 
+        // add lessons result to lessons data property
         this.lessons = await response.json();
     },
     watch: {
